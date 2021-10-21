@@ -26,7 +26,7 @@
 | sales_status        | references | null: false, foreign_key: true |
 | shipping_fee_status | references | null: false, foreign_key: true |
 | prefecture          | references | null: false, foreign_key: true |
-| scheduled_delivery  | date       | null: false, foreign_key: true |
+| scheduled_delivery  | date       | null: false,                   |
 | price               | integer    | null: false                    |
 | seller_id           | references | null: false, foreign_key: true |
 
