@@ -14,46 +14,47 @@
  
 ## Association
 - has_many :items
-- has_one :sending_information
+- has_many :orders
 
 ## items テーブル
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| image               | text       | null: false                    |
-| name                | string     | null: false                    |
-| info                | text       | null: false                    |
-| category            | references | null: false, foreign_key: true |
-| sales_status        | references | null: false, foreign_key: true |
-| shipping_fee_status | references | null: false, foreign_key: true |
-| prefecture          | references | null: false, foreign_key: true |
-| scheduled_delivery  | references | null: false, foreign_key: true |
-| price               | integer    | null: false                    |
-| user_id             | references | null: false, foreign_key: true |
+| Column                 | Type    | Options                        |
+| ---------------------- | ------- | ------------------------------ |
+| name                   | string  | null: false                    |
+| info                   | text    | null: false                    |
+| category_id            | integer | null: false, foreign_key: true |
+| sales_status_id        | integer | null: false, foreign_key: true |
+| shipping_fee_status_id | integer | null: false, foreign_key: true |
+| prefecture_id          | integer | null: false, foreign_key: true |
+| scheduled_delivery_id  | integer | null: false, foreign_key: true |
+| price                  | integer | null: false                    |
+| user                   | integer | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user 
 - has_one :order
+- has_one :sending_information
 
 ## sending_information テーブル
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ | 
-| postal-code  | integer    | null: false                    |
-| prefecture   | references | null: false, foreign_key: true |
-| city         | string     | null: false                    |
-| address      | string     | null: false                    |
-| building     | string     |                                |
-| phone-number | integer    | null: false                    |
-
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ | 
+| postal-code   | string     | null: false                    |
+| prefecture_id | integer    | null: false, foreign_key: true |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| phone-number  | integer    | null: false                    |
+| order         | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :order
-- belongs_to :user
+- belongs_to :item
 
 ## orders テーブル
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id  | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :item
 - has_one :sending_information
+- belongs_to :user
