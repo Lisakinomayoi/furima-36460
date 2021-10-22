@@ -26,9 +26,9 @@
 | sales_status        | references | null: false, foreign_key: true |
 | shipping_fee_status | references | null: false, foreign_key: true |
 | prefecture          | references | null: false, foreign_key: true |
-| scheduled_delivery  | date       | null: false,                   |
+| scheduled_delivery  | references | null: false, foreign_key: true |
 | price               | integer    | null: false                    |
-| seller_id           | references | null: false, foreign_key: true |
+| user_id             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user 
@@ -51,7 +51,7 @@
 ## orders テーブル
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
-| buyer_id | references | null: false, foreign_key: true |
+| user_id | references | null: false, foreign_key: true |
 | item_id  | references | null: false, foreign_key: true |
 
 ### Association
