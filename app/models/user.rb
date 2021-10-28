@@ -18,7 +18,7 @@ class User < ApplicationRecord
     validates :birth_date
   end
   validates :encrypted_password, :password, presence: { message: "password can't be blank" },
-                                                                    length: { minimum: 6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/ }
+                                            length: { minimum: 6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/ }
   # VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i#/A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
   # validates :encrypted_password, confirmation: true, format: { with: VALID_PASSWORD_REGEX,
   # message: "は半角6文字以上英大文字・小文字・数字それぞれ１文字以上含む必要があります"}
