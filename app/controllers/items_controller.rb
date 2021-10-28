@@ -1,18 +1,19 @@
 class ItemsController < ApplicationController
   def index
-    @item = Item.all
+    @items = Item.all
   end
 
   def new
     @item = Item.new
+    @item.images.new
   end
 
   def create
     @item = Item.new(item_params)   
     if @item.save
-      redirect_to root_path#(@item)
+      redirect_to root_path(@item)
     else
-      render :new  
+      redirect_to new_item_path 
     end
   end
 
