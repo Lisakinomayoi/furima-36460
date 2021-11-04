@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show, :new, :create, :edit, :destroy, :update]
-  before_action :authenticate_user!, except: [:index, :show]
+  #before_action :move_to_index, except: [:index, :show, :new, :create, :edit, :destroy, :update]
+  before_action :authenticate_user!, only: :new
+
   def index
     @items = Item.all
   end
@@ -12,15 +13,13 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)   
-    if @item.save
-      redirect_to root_path(@item)
+    #@item.user_id = current_user.id
+    if @item.valid?
+      @item.save
+      redirect_to root_path
     else
-      redirect_to new_item_path 
+      render :new 
     end
-  end
-
-  def show
-    
   end
 
   private
