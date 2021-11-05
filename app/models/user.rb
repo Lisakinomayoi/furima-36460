@@ -16,5 +16,5 @@ class User < ApplicationRecord
     validates :birth_date
   end
   validates :password, presence: { message: "password can't be blank" },
-                                            length: { minimum: 6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/ }
+                       length: { minimum: 6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/ }
 end
