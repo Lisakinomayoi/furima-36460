@@ -12,7 +12,7 @@ class OrderInformation < ApplicationRecord
   
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
-    ShippingInformation.create(postal_code :postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, oreder_id: oreder_id)
+    SendingInformation.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, oreder_id: oreder_id)
   end
 end
 
