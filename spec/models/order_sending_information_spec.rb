@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderSendingInformation, type: :model do
   describe '商品購入' do
     before do
-      #user = FactoryBot.create(:user)
+      # user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @order_sending_information = FactoryBot.build(:order_sending_information, item_id: item.id)
-      #@order_sending_information = FactoryBot.build(:order_sending_information, user_id: user.id, item_id: item.id)
+      # @order_sending_information = FactoryBot.build(:order_sending_information, user_id: user.id, item_id: item.id)
     end
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
@@ -59,14 +59,14 @@ RSpec.describe OrderSendingInformation, type: :model do
       it 'userが紐付いていないと保存できないこと' do
         @order_sending_information.user_id = nil
         @order_sending_information.valid?
-        expect(@order_sending_information.errors.full_messages).to include()
+        expect(@order_sending_information.errors.full_messages).to include
       end
       it 'itemが紐付いていないと保存できないこと' do
         @order_sending_information.item_id = nil
         @order_sending_information.valid?
-        expect(@order_sending_information.errors.full_messages).to include()
+        expect(@order_sending_information.errors.full_messages).to include
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_sending_information.token = nil
         @order_sending_information.valid?
         expect(@order_sending_information.errors.full_messages).to include("Token can't be blank")

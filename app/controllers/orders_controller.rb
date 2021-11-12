@@ -1,17 +1,16 @@
 class OrdersController < ApplicationController
-
   before_action :authenticate_user!, except: :index
-  
+
   def index
-    @order = Order.new#(order_params)
+    @order = Order.new # (order_params)
     @item = Item.find(params[:item_id])
-    @order_sending_information = OrderSendingInformation.new#(order_params)
-    #@order_information = OrderInformation.new
+    @order_sending_information = OrderSendingInformation.new # (order_params)
+    # @order_information = OrderInformation.new
   end
 
   def new
     @order_sending_information = OrderSendingInformation.new
-    #@order = Order.new
+    # @order = Order.new
   end
 
   # def create
@@ -40,17 +39,20 @@ class OrdersController < ApplicationController
     end
   end
 
-  private 
+  private
+
   def order_params
-    #params.permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: @item_id)
-    params.require(:order_sending_information).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+    # params.permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: @item_id)
+    params.require(:order_sending_information).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      amount: @item.price, # 商品の値段
+      card: order_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
