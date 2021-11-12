@@ -66,6 +66,11 @@ RSpec.describe OrderSendingInformation, type: :model do
         @order_sending_information.valid?
         expect(@order_sending_information.errors.full_messages).to include()
       end
+      it "tokenが空では登録できないこと" do
+        @order_sending_information.token = nil
+        @order_sending_information.valid?
+        expect(@order_sending_information.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
