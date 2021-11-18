@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   with_options presence: true do
-    validates :nickname, presence: { message: "nickname can't be blank" }
+    validates :nickname, presence: { message: "can't be blank" }
     validates :last_name, presence: { message: "can't be blank" },
                           format: { with: /\A[ぁ-んァ-ヶー-龥々]+\z/, message: 'Full-width characters' }
     validates :first_name, presence: { message: "can't be blank" },
