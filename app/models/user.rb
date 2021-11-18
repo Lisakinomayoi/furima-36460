@@ -15,6 +15,6 @@ class User < ApplicationRecord
                                 format: { with: /\A[ァ-ヶ]+\z/, message: 'Full-width characters' }
     validates :birth_date
   end
-  validates :password, presence: { message: "password can't be blank" },
+  validates :password, presence: { message:  "confirmation can't be blank" },
                        length: { minimum: 6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/ }
 end
